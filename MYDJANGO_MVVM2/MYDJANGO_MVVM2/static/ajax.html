@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+function fn_ajax(){
+	console.log("방가방가 ")
+	var param = {
+		'menu': '짬뽕'	
+	}
+	$.ajax({
+	type:'POST',
+	url:'/ajax',
+	data:JSON.stringify(param),
+	success:function(res){
+	    console.log(res);
+	}
+	})
+}
+
+</script>
+
+</head>
+<body>
+
+AJAX HTML<br>
+
+<a href="javascript:fn_ajax()">ajax</a>
+
+
+
+</body>
+</html>

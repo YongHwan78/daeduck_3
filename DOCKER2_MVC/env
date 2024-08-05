@@ -1,0 +1,8 @@
+docker build -t mydjango_mvc .
+
+docker run -d -p 0.0.0.0:8001:8001/tcp --name django_con2 mydjango_mvc:latest
+
+
+docker pull mariadb
+
+docker run -d --name my_mariadb -e MYSQL_ROOT_PASSWORD=python mariadb

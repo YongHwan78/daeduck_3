@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+//쿠키 저장하는 함수
+function set_cookie(name, value, unixTime) {
+    var date = new Date();
+    date.setTime(date.getTime() + unixTime);
+    document.cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value) + ';expires=' + date.toUTCString() + ';path=/';
+}
+
+//쿠키 값 가져오는 함수
+function get_cookie(name) {
+	console.log("document.cookie",document.cookie);
+    var value = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+    return value? value[2] : null;
+}
+
+//쿠키 삭제하는 함수
+function delete_cookie(name) {
+    document.cookie = encodeURIComponent(name) + '=; expires=Thu, 01 JAN 1999 00:00:10 GMT';
+}
+
+
+function show_cookie(){
+	var e_id = get_cookie("e_id");
+	console.log("e_id",e_id);
+}
+function del_cookie(){
+	delete_cookie("e_id");
+	console.log("del_cookie");
+}
+
+function save_cookie(){
+	set_cookie("e_id","hong gildong",30*1000);
+	console.log("save_cookie");
+	
+}
+
+</script>
+</head>
+<body>
+COO <br>
+<a href="javascript:show_cookie()">coo</a><br>
+<a href="javascript:del_cookie()">del coo</a><br>
+<a href="javascript:save_cookie()">save coo</a><br>
+
+</body>
+</html>

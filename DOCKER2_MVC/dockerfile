@@ -1,0 +1,10 @@
+FROM python:3.9
+
+RUN apt-get update && apt-get install -y default-mysql-client
+
+RUN pip3 install django mysqlclient
+WORKDIR /app
+
+COPY . /app
+
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8001"]

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+.it{
+	width: 30%
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#btn').on('click', function(event) {  
+	
+		myclick();
+	
+	});
+})
+	
+function myclick(){
+	var arr = ['1','2','3','4','5', '6','7','8','9','10',
+		'11','12','13','14','15', '16','17','18','19','20',
+		'21','22','23','24','25', '26','27','28','29','30',
+		'31','32','33','34','35', '36','37','38','39','40',
+		'41','42','43','44','45'
+		];
+		
+	for(let a = 0; a < 45; a++){
+		const rnd = parseInt(Math.random()*45);
+		let param = arr[0];
+		arr[0] = arr[rnd];
+		arr[rnd] = param;
+	}
+	
+	for(var i = 0; i < 6; i++){
+		for(var j = 0; j < 6; j++){
+			if(arr[i] < arr[j]){
+				param = arr[j]
+                arr[j] = arr[i]
+                arr[i] = param
+			}
+		}
+	}
+	
+	$('.mydiv').eq(0).html(arr[0]);
+	$('.mydiv').eq(1).html(arr[1]);
+	$('.mydiv').eq(2).html(arr[2]);
+	$('.mydiv').eq(3).html(arr[3]);
+	$('.mydiv').eq(4).html(arr[4]);
+	$('.mydiv').eq(5).html(arr[5]);
+}
+
+
+</script>
+<body>
+
+JQ04 HTMl <br>
+<table border="1px">
+	<tr>
+		<td><div class="mydiv">__</div> </td>
+		<td><div class="mydiv">__</div> </td>
+		<td><div class="mydiv">__</div> </td>
+		<td><div class="mydiv">__</div> </td>
+		<td><div class="mydiv">__</div> </td>
+		<td><div class="mydiv">__</div> </td>
+	</tr> 
+	
+	<tr>
+		<td colspan="6"> <button type="button" value="로또생성하기" id="btn" > 로또생성하기 </button> </td>
+	</tr>
+</table>
+</body>
+</html>

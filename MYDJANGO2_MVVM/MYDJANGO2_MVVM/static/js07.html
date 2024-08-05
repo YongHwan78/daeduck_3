@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+.num, #btn_call{
+	width: 100%;
+}
+table{
+	text-align: center;
+}
+#it{
+	text-align: right;
+}
+</style>
+<body>
+
+JS03 HTMl <br>
+<table border="1px">
+	<tr>
+		<td colspan="3" id="cont"> <input type="text" id="it"> </td>
+	</tr> 
+	<tr>
+		<td > <input type="button" class="num" value = "1" onclick="myclick(this)"> </td>
+		<td > <input type="button" class="num" value = "2"> </td>
+		<td > <input type="button" class="num" value = "3"> </td>
+	</tr> 
+	<tr>
+		<td > <input type="button" class="num" value = "4"> </td>
+		<td > <input type="button" class="num" value = "5"> </td>
+		<td > <input type="button" class="num" value = "6"> </td>
+	</tr> 
+	<tr>
+		<td > <input type="button" class="num" value = "7"> </td>
+		<td > <input type="button" class="num" value = "8"> </td>
+		<td > <input type="button" class="num" value = "9"> </td>
+	</tr> 
+	<tr>
+		<td > <input type="button" class="num" value = "0"> </td>
+		<td colspan="2"> <input type="button" id="btn_call" value = "☎"> </td>
+	</tr> 
+	
+</table>
+
+<script type="text/javascript">
+var tellno = ""; 
+var numButtons = document.querySelectorAll('.num'); 
+
+numButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+        var num = this.value; 
+        document.getElementById('it').value += num; 
+        tellno += num; 
+    });
+});
+
+
+document.getElementById('btn_call').addEventListener('click', function() {
+    alert(tellno); 
+    num = "";
+    document.getElementById('it').value = num; 
+});
+</script>
+
+</body>
+</html>

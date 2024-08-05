@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+#it{
+	width: 30%
+}
+#mydiv{
+	height: 200px;
+
+}
+</style>
+<script type="text/javascript">
+	
+
+function print(){
+	dan =	document.getElementById('it').value;
+	idan = parseInt(dan);
+	mydiv2 =	document.getElementById('mydiv2');
+	str ="";
+	
+	for( a = 1 ; a <= 9 ; a++){
+		sum = idan * a 
+		str += it +" * " + a +" = " + sum +"\n";
+	}
+ 
+ mydiv2.innerText = str;	
+	
+	
+}
+</script>
+<body>
+
+JS04 HTMl <br>
+<table border="1px">
+	<tr>
+		<td><div>출력단수</div> </td>
+		<td> <input type="text" id="it">  </td>
+	</tr> 
+	
+	<tr >
+		<td colspan="2"> <button type="button" value=" 출력하기 " onclick="print()" > 출력하기 </button> </td>
+	</tr>
+	<tr >
+		<td colspan="2"> <div id="mydiv2"> </div> </td>
+	</tr>
+</table>
+</body>
+</html>

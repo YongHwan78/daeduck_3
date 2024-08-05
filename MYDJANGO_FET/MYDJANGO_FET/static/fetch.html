@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script type="text/javascript">
+function fn_ajax2(){
+	fetch('/fetch', {
+		method: 'post',
+		body: JSON.stringify({"menu":"탕수육"})
+		})
+	.then(res => res.json())
+	.then(res => {
+	  console.log(res);
+	})
+	
+
+}
+
+</script>
+
+</head>
+<body>
+
+FETCH HTML<br>
+
+<a href="javascript:fn_ajax2()">fetch</a>
+
+
+
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+.it{
+	width: 30%
+}
+</style>
+<script type="text/javascript">
+
+var elements = document.getElementsByClassName('equal'); 
+
+
+function calc(){
+    const nodes = document.getElementsByClassName('it'); 
+    const sum = parseInt(nodes[0].value) + parseInt(nodes[1].value); 
+	console.log(sum)
+    nodes[2].value = String(sum)
+ }
+
+</script>
+<body>
+
+JS02 HTMl <br>
+<input type="text" class="it" > 
++
+<input type="text" class="it" > 
+<input type="button" value="=" onclick="calc()"> 
+<input type="text" class="it"  >
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+function myclick(){
+	$('#mydiv').html("Good Evening");
+}
+$(document).ready(function(){
+	$("#btn").on("click", function(event) {  
+		myclick()
+		
+	});
+
+});
+ 
+
+</script>
+<body>
+JS01 HTMl <br>
+<div id="mydiv">Good morning </div>
+<input type="button" value="CLICK" id="btn" >
+</body>
+</html>

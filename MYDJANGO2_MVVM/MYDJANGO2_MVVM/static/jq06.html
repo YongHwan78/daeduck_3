@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+#it_first, #it_last{
+	width: 40px;
+	
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#btn').on('click', function(event) {  
+		myclick();
+	
+	});
+	
+})
+function myclick(){
+	str = "";
+	var first = parseInt($('#it_first').val());
+	var last = parseInt($('#it_last').val());
+	
+	for (let i = first; i <= last; i++) {
+		str += draw(i);
+	}
+	
+	
+	$('#ta').val(str)
+	
+}
+
+function draw(first){
+	let ret = "";
+	for (let i2 = 0; i2 < first; i2++) {
+		ret+="★";
+		console.log(ret)
+	}
+	ret+="\n";
+	return ret;
+	
+}
+</script>
+<body>
+
+JS06 HTMl <br>
+<table border="1px">
+	<tr>
+		<td> 첫 별 수 </td>
+		<td> <input type="text" id ="it_first" > </td>
+	</tr> 
+	<tr>
+		<td> 끝 별 수 </td>
+		<td> <input type="text" id ="it_last" > </td>
+	</tr> 
+	
+	<tr>
+		<td colspan="2">
+			<input type="text" value="별그리기" id="btn">
+		</td>		
+	</tr> 
+
+	<tr>
+		<td colspan="2"> 
+			<textarea rows="20" cols="20" id="ta"></textarea>
+		</td>
+	
+	</tr> 
+	
+	
+</table>
+</body>
+</html>

@@ -1,0 +1,5 @@
+↓ 플라스크를 도커 이미지에 추가하는 cmd 명령어
+docker build -t flasktest .
+
+↓ 플라스크를 도커 컨테이너에 추가하는 cmd 명령어
+docker run -d -p 0.0.0.0:5000:5000/tcp --name dockertest flasktest:latest

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<script type="text/javascript">
+function fn_add(){
+	document.frm.submit();
+}
+
+/* $(function(){
+	$('#m_id').on('change', function(){
+	  flag = location.href="mem_check?m_id"
+	  
+		if(flag){
+			alert("중복된 ID 입니다.")
+			$('#m_id').value("");
+		}else{
+			alert("사용가능한 ID 입니다.")
+			
+		}
+	})
+
+})
+ */
+
+</script>
+<body>
+	
+	MEM_ADD HTML
+	<form action="mem_add_act" method="post" name="frm">
+	<table border="1px">
+		<tr>
+			<th>사번</th>
+			<td><input type="text" name="m_id" ></td>
+		</tr>
+		<tr>
+			<th>이름</th>
+			<td><input type="text" name="m_name"></td>
+		</tr>
+		<tr>
+			<th>번호</th>
+			<td><input type="text" name="tel"></td>
+		</tr>
+		<tr>
+			<th>메일</th>
+			<td><input type="text" name="email"></td>
+		</tr>
+		<tr>
+			<th colspan="2"> <input type="button" value="등록" onclick="fn_add()"></th>
+		</tr>
+	
+	</table>
+	</form>
+</body>
+</html>

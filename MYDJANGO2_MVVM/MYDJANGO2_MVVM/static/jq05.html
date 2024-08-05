@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+#it_mine, #it_com, #it_result{
+	width: 40px
+	
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#btn').on('click', function(event) {  
+	myclick();
+	});
+	
+})
+function myclick(){
+	var rnd = Math.random();
+	my = document.getElementById('it_mine');
+	com = document.getElementById('it_com');
+	res = document.getElementById('it_result');
+	
+	var myV = $('#it_mine').val();
+	
+	
+	if(rnd > 0.5){
+		$('#it_com').val("홀");
+	}else{
+		$('#it_com').val("짝");
+	}
+	
+	if(myV == com.value){
+		$('#it_result').val("승리");
+		
+	} else {
+		$('#it_result').val("패배");
+		
+	}
+}
+</script>
+<body>
+
+JS05 HTMl <br>
+<table border="1px">
+	<tr>
+		<td>  나  </td>
+		<td> <input type="text" id ="it_mine" > </td>
+	
+	</tr> 
+	
+	<tr>
+		<td>  컴  </td>
+		<td> <input type="text" id ="it_com" readonly> </td>
+	
+	</tr> 
+	
+	<tr>
+		<td>  결과  </td>
+		<td> <input type="text" id ="it_result"  readonly> </td>
+	
+	</tr> 
+	<tr>
+		<td colspan="2"> 
+		
+		<input type="button" value="게임하기" id="btn">
+		
+		</td>
+	
+	</tr> 
+	
+	
+</table>
+</body>
+</html>

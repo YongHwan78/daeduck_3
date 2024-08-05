@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body onload="fn_ajax()">
+
+EMP HTML
+<br>
+
+<table border="1px">
+    <thead>
+        <tr>
+            <td>사번</td>
+            <td>이름</td>
+            <td>성별</td>
+            <td>주소</td>
+        </tr>
+    </thead>
+    <tbody id="data">
+        <tr>
+            <td  colspan="4"> 
+                데이터가 없습니다.
+            </td>
+        </tr>
+    </tbody>
+</table>
+<table border="1px">
+    <thead>
+        <tr>
+            <td>사번</td> <td  > <input type="text" id="e_id" name="e_id"> </td>
+        </tr>
+        <tr>
+            <td>이름</td> <td   >  <input type="text" id="e_name" name="e_name"></td>
+        </tr>
+        <tr>
+            <td>성별</td > <td  >  <input type="text" id="gen" name="gen"></td>
+        </tr>
+        <tr>
+            <td>주소</td> <td  >  <input type="text" id="addr" name="addr"></td>
+        </tr>
+        <tr> <td colspan="3"> <input type="submit" value="추가" id="btn_add" >  <input type="button" value="수정" id="btn_mod">  <input type="button" value="삭제" id="btn_del"> </td>  </tr>
+    </thead>
+</table>
+
+<a href="#" id="ajaxLink">ajax</a>
+
+<script type="text/javascript">
+    function fn_ajax() {
+        fetch('/emp_list.ajax', {
+            method: 'POST'
+        })
+        .then(response => response.json())
+        .then(data => {
+            var list = data.list;
+            var txt = "";
+            console.log(list);
+
+            for (var i = 0; i < list.length; i++) {
+                var e_id = list[i].e_id;
+                var e_name = list[i].e_name;
+                var gen = list[i].gen;
+                var addr = list[i].addr;
+
+                txt += `<tr>
+                    <td> <a href="javascript:fn_one('${e_id}')"> ${e_id} </a> </td>
+                    <td>${e_name}</td>
+                    <td>${gen}</td>
+                    <td>${addr}</td>
+                </tr>`;
+            }
+            document.getElementById('data').innerHTML = txt;
+        });
+    }
+
+    function fn_one(e_id) {
+        console.log(e_id)
+        var param = {
+            'e_id': e_id
+        }
+        fetch('/emp_one.ajax', {
+            method: 'POST',
+            body: JSON.stringify(param)
+        })
+        .then(response => response.json())
+        .then(data => {
+            var vo = data.vo;
+            console.log(vo)
+
+            var e_id = vo.e_id;
+            var e_name = vo.e_name;
+            var gen = vo.gen;
+            var addr = vo.addr;
+
+            document.getElementById('e_id').value = e_id;
+            document.getElementById('e_name').value = e_name;
+            document.getElementById('gen').value = gen;
+            document.getElementById('addr').value = addr;
+        });
+    }
+
+    function fn_add(e_id, e_name, gen, addr) {
+        console.log(e_id, e_name, gen, addr);
+        var param = {
+            'e_id': e_id,
+            'e_name': e_name,
+            'gen': gen,
+            'addr': addr
+        };
+        fetch('/emp_add.ajax', {
+            method: 'POST',
+            body: JSON.stringify(param)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data.cnt);
+            if (data.cnt == 1) {
+                alert("정상적으로 추가되었습니다.");
+                document.getElementById('e_id').value = "";
+                document.getElementById('e_name').value = "";
+                document.getElementById('gen').value = "";
+                document.getElementById('addr').value = "";
+            } else {
+                alert("문제가 생겼습니다.");
+            }
+            fn_ajax();
+        });
+    }
+
+    function fn_mod(e_id, e_name, gen, addr) {
+        console.log("fn_mod" + e_id, e_name, gen, addr);
+        var param = {
+            'e_id': e_id,
+            'e_name': e_name,
+            'gen': gen,
+            'addr': addr
+        };
+        fetch('/emp_mod.ajax', {
+            method: 'POST',
+            body: JSON.stringify(param)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.cnt == 1) {
+                alert("정상적으로 수정되었습니다.");
+                document.getElementById('e_id').value = "";
+                document.getElementById('e_name').value = "";
+                document.getElementById('gen').value = "";
+                document.getElementById('addr').value = "";
+            } else {
+                alert("문제가 생겼습니다.");
+            }
+            fn_ajax();
+        });
+    }
+
+    function fn_del(e_id) {
+        console.log("fn_mod" + e_id, e_name, gen, addr);
+        if(confirm("정말로 삭제하겠습니까?")) return;
+        var param = {
+            'e_id': e_id
+        };
+        fetch('/emp_del.ajax', {
+            method: 'POST',
+            body: JSON.stringify(param)
+        })
+        .then(response => response.json())
+        .then(data => {
+            var cnt = data.cnt;
+            if (cnt == 1) {
+                alert("정상적으로 삭제되었습니다.");
+                document.getElementById('e_id').value = "";
+                document.getElementById('e_name').value = "";
+                document.getElementById('gen').value = "";
+                document.getElementById('addr').value = "";
+            } else {
+                alert("문제가 생겼습니다.");
+            }
+            fn_ajax();
+        });
+    }
+
+    document.getElementById('btn_add').addEventListener('click', function() {
+        var e_id = document.getElementById('e_id').value;
+        var e_name = document.getElementById('e_name').value;
+        var gen = document.getElementById('gen').value;
+        var addr = document.getElementById('addr').value;
+
+        console.log(e_id, e_name, gen, addr);
+        fn_add(e_id, e_name, gen, addr);
+    });
+
+    document.getElementById('btn_mod').addEventListener('click', function() {
+        var e_id = document.getElementById('e_id').value;
+        var e_name = document.getElementById('e_name').value;
+        var gen = document.getElementById('gen').value;
+        var addr = document.getElementById('addr').value;
+
+        console.log(e_id, e_name, gen, addr);
+        fn_mod(e_id, e_name, gen, addr);
+    });
+
+    document.getElementById('btn_del').addEventListener('click', function() {
+        var e_id = document.getElementById('e_id').value;
+        if (confirm("정말로 삭제하시겠습니까?"))
+            fn_del(e_id);
+    });
+
+    document.getElementById('ajaxLink').addEventListener('click', function(event) {
+        event.preventDefault();
+        fn_ajax();
+    });
+</script>
+
+</body>
+</html>

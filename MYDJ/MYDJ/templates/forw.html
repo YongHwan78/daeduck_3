@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<style>
+	table td {
+		border: solid 1px;
+	}
+</style>
+<body>
+FORW HTML 1
+
+<br>
+{{c}}
+<br>
+<!-- {%	for item in b %} -->
+	
+<!-- 	{{ item.index }} :  {{ item }} <br/> -->
+
+<!-- {% endfor %} -->
+
+<table>
+<tr><th>사번</th><th>이름</th><th>성별</th><th>주소</th>   </tr>
+{%	for c1 in c %}
+	<tr> 
+	<td> {{c1.e_id}}</td><td> {{c1.e_name}}</td><td> {{c1.gen}}</td><td> {{c1.addr}}</td>
+	</tr>
+{% endfor %}
+</table>
+	
+</body>
+</html>
